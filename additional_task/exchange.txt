@@ -1,0 +1,4 @@
+2023-07-21 21:22:39.051758 | user: Walter Wilson | request: exchange | response: 21.07.2023 EUR: (sale: 40.9897, purchase: 40.9897) USD: (sale: 36.5686, purchase: 36.5686)
+2023-07-21 21:22:53.504771 | user: Virgil Luckow | request: exchange | response: 21.07.2023 EUR: (sale: 40.9897, purchase: 40.9897) USD: (sale: 36.5686, purchase: 36.5686)
+2023-07-21 21:23:27.041774 | user: Walter Wilson | request: exchange 21 | response: You can not take info about currency for more then 10 days!
+2023-07-21 21:25:39.033194 | user: Walter Wilson | request: exchange | response: 21.07.2023 EUR: (sale: 40.9897, purchase: 40.9897) USD: (sale: 36.5686, purchase: 36.5686)
