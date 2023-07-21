@@ -18,7 +18,7 @@ def create_dates_list(days: int) -> List[str] | None:
     current_date = date.today()
     if days <= 10:
         return [(current_date - timedelta(days=i)).strftime('%d.%m.%Y') for i in range(days)]
-    print('You can not take info about currency for more then 10 days!')
+    print('You can not take info about currency for more than 10 days!')
     return None
 
 
@@ -92,8 +92,7 @@ def parse_arguments(arguments: list) -> Tuple[int, str] | int | str:
 def handle_response(args: Tuple[int, str] | int | str) -> List:
     answer_: list = []
     if isinstance(args, tuple):
-        days, curr = args[0], args[1]
-        answer_ = process(days, curr)
+        answer_ = process(args[0], args[1])
     elif isinstance(args, int):
         answer_ = process(args)
     elif isinstance(args, str):

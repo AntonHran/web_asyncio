@@ -27,7 +27,7 @@ def create_dates_list(days: int) -> List[str] | None:
     current_date = date.today()
     if days <= 10:
         return [(current_date - timedelta(days=i)).strftime('%d.%m.%Y') for i in range(days)]
-    print('You can not take info about currency for more then 10 days!')
+    print('You can not take info about currency for more than 10 days!')
     return None
 
 

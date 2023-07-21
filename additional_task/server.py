@@ -32,7 +32,7 @@ def create_dates_list(days: int) -> List[str] | str:
     current_date = date.today()
     if days <= 10:
         return [(current_date - timedelta(days=i)).strftime('%d.%m.%Y') for i in range(days)]
-    return 'You can not take info about currency for more then 10 days!'
+    return 'You can not take info about currency for more than 10 days!'
 
 
 async def get_request(url: str) -> dict | None:
@@ -105,18 +105,18 @@ class Server:
         finally:
             await self.unregister(ws)
 
+    async def handle_response(self, message: str) -> list:
+        response_ = await async_form_answer(message)
+        if type(response_) is str:
+            return [response_]
+        return [parse_response(response) for response in response_]
+
     async def distribute(self, ws: WebSocketServerProtocol):
         async for message in ws:
             if message.startswith('exchange'):
-                response_ = await async_form_answer(message)
-                if type(response_) is str:
-                    await log_to_file(message, response_, ws)
-                    await self.send_to_client(response_, ws)
-                else:
-                    for response in response_:
-                        record: str = parse_response(response)
-                        await log_to_file(message, record, ws)
-                        await self.send_to_client(record, ws)
+                for answer in await self.handle_response(message):
+                    await log_to_file(message, answer, ws)
+                    await self.send_to_client(answer, ws)
             else:
                 await self.send_to_clients(f"{ws.name}: {message}")
                 logging.info(f'{ws.remote_address} message: {message}')
